@@ -162,56 +162,130 @@ allprojects {
                     }
                 }
             }
+            val shouldRegistering = when{
+                project.extensions.findByName("javaPlatform")!=null->true
+                project.extensions.findByType(org.jetbrains.kotlin.gradle.dsl.KotlinMultiplatformExtension::class) != null->false
+                project.extensions.findByName("android")!=null -> {
+                    true
+                }
+                else->false
+            }
             afterEvaluate {
-                publications.withType<MavenPublication> {
-                    artifact(javadocJar)
-                    version = mVersion
-                    groupId = mGroup
-                    if (artifactId.startsWith("${rootProjectName}-${currentName}")) {
-                        artifactId =
-                            artifactId.replace("${rootProjectName}-${currentName}", currentName)
-                    }
-                    artifactId = artifactId.lowercase()
-                    println("artifactId: $artifactId \"${rootProjectName}-${currentName}\"")
-                    pom {
-                        url = "https://github.com/$mavenAuthor/${projectName}"
-                        name = projectName
-                        description = """
+                if(shouldRegistering){
+                    publications.register<MavenPublication>(
+                        if(project.extensions.findByName("android")!=null) "release" else "java")
+                    {
+
+                        when{
+                            project.extensions.findByName("javaPlatform")!=null->{
+                                from(components["javaPlatform"])
+                            }
+                            project.extensions.findByName("android")!=null->{
+                                from(components["release"])
+                            }
+                            else->Unit
+                        }
+                        version = mVersion
+                        groupId = mGroup
+                        if (artifactId.startsWith("${rootProjectName}-${currentName}")) {
+                            artifactId =
+                                artifactId.replace("${rootProjectName}-${currentName}", currentName)
+                        }
+                        artifactId = artifactId.lowercase()
+                        println("artifactId: $artifactId \"${rootProjectName}-${currentName}\"")
+                        pom {
+                            url = "https://github.com/$mavenAuthor/${projectName}"
+                            name = projectName
+                            description = """
                 Visit the project on GitHub to learn more.
             """.trimIndent()
-                        inceptionYear = "2024"
-                        licenses {
-                            license {
-                                name = "Apache-2.0 License"
-                                url = "http://www.apache.org/licenses/LICENSE-2.0.txt"
+                            inceptionYear = "2024"
+                            licenses {
+                                license {
+                                    name = "Apache-2.0 License"
+                                    url = "http://www.apache.org/licenses/LICENSE-2.0.txt"
+                                }
+                            }
+                            developers {
+                                developer {
+                                    id = "jenly1314"
+                                    name = "jenly1314"
+                                    email = ""
+                                    roles = listOf("Mobile Developer")
+                                    timezone = "GMT+8"
+                                }
+                            }
+                            contributors {
+                                // contributor {}
+                            }
+                            scm {
+                                tag = "HEAD"
+                                url = "https://github.com/$mavenAuthor/${projectName}"
+                                connection = "scm:git:github.com/$mavenAuthor/${projectName}.git"
+                                developerConnection =
+                                    "scm:git:ssh://github.com/$mavenAuthor/${projectName}.git"
+                            }
+                            issueManagement {
+                                system = "GitHub"
+                                url = "https://github.com/$mavenAuthor/${projectName}/issues"
+                            }
+                            ciManagement {
+                                system = "GitHub Actions"
+                                url = "https://github.com/$mavenAuthor/${projectName}/actions"
                             }
                         }
-                        developers {
-                            developer {
-                                id = "arnaudgiuliani"
-                                name = "Arnaud Giuliani"
-                                email = "arnaud@kotzilla.io"
-                                roles = listOf("Mobile Developer")
-                                timezone = "GMT+8"
-                            }
+                    }
+                }else{
+                    publications.withType<MavenPublication> {
+                        artifact(javadocJar)
+                        version = mVersion
+                        groupId = mGroup
+                        if (artifactId.startsWith("${rootProjectName}-${currentName}")) {
+                            artifactId =
+                                artifactId.replace("${rootProjectName}-${currentName}", currentName)
                         }
-                        contributors {
-                            // contributor {}
-                        }
-                        scm {
-                            tag = "HEAD"
+                        artifactId = artifactId.lowercase()
+                        println("artifactId: $artifactId \"${rootProjectName}-${currentName}\"")
+                        pom {
                             url = "https://github.com/$mavenAuthor/${projectName}"
-                            connection = "scm:git:github.com/$mavenAuthor/${projectName}.git"
-                            developerConnection =
-                                "scm:git:ssh://github.com/$mavenAuthor/${projectName}.git"
-                        }
-                        issueManagement {
-                            system = "GitHub"
-                            url = "https://github.com/$mavenAuthor/${projectName}/issues"
-                        }
-                        ciManagement {
-                            system = "GitHub Actions"
-                            url = "https://github.com/$mavenAuthor/${projectName}/actions"
+                            name = projectName
+                            description = """
+                Visit the project on GitHub to learn more.
+            """.trimIndent()
+                            inceptionYear = "2024"
+                            licenses {
+                                license {
+                                    name = "Apache-2.0 License"
+                                    url = "http://www.apache.org/licenses/LICENSE-2.0.txt"
+                                }
+                            }
+                            developers {
+                                developer {
+                                    id = "jenly1314"
+                                    name = "jenly1314"
+                                    email = ""
+                                    roles = listOf("Mobile Developer")
+                                    timezone = "GMT+8"
+                                }
+                            }
+                            contributors {
+                                // contributor {}
+                            }
+                            scm {
+                                tag = "HEAD"
+                                url = "https://github.com/$mavenAuthor/${projectName}"
+                                connection = "scm:git:github.com/$mavenAuthor/${projectName}.git"
+                                developerConnection =
+                                    "scm:git:ssh://github.com/$mavenAuthor/${projectName}.git"
+                            }
+                            issueManagement {
+                                system = "GitHub"
+                                url = "https://github.com/$mavenAuthor/${projectName}/issues"
+                            }
+                            ciManagement {
+                                system = "GitHub Actions"
+                                url = "https://github.com/$mavenAuthor/${projectName}/actions"
+                            }
                         }
                     }
                 }

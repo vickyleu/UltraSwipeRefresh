@@ -49,7 +49,7 @@ internal class UltraSwipeRefreshNestedScrollConnection(
         // 当正在刷新或正在加载或处理正在完成时，交由 [obtainAvailable] 处理
         state.isRefreshing || state.isLoading || state.isFinishing -> obtainAvailable(available)
         // 当正在滑动时，则进行处理
-        source == NestedScrollSource.Drag -> onScroll(available)
+        source == NestedScrollSource.UserInput -> onScroll(available)
         else -> Offset.Zero
     }
 
