@@ -10,6 +10,7 @@ import androidx.compose.runtime.CompositionLocalProvider
 /**
  * 无过度滚动效果
  */
+@OptIn(ExperimentalFoundationApi::class)
 @Composable
 internal actual fun NoOverscrollEffect(content: @Composable () -> Unit) {
     CompositionLocalProvider(LocalOverscrollConfiguration provides null, content = content)
