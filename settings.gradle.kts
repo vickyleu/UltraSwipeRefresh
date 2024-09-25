@@ -1,3 +1,5 @@
+@file:Suppress("UnstableApiUsage")
+
 rootProject.name = "UltraSwipeRefresh"
 
 enableFeaturePreview("TYPESAFE_PROJECT_ACCESSORS")
@@ -11,9 +13,9 @@ pluginManagement {
     }
     listOf(repositories, dependencyResolutionManagement.repositories).forEach {
         it.apply {
+            google()
             gradlePluginPortal()
             mavenCentral()
-            maven(url = "https://openbakery.org/repository/")
         }
     }
 }
@@ -45,8 +47,8 @@ dependencyResolutionManagement {
 }
 
 
-//include(":app")
-//include(":refresh")
-//include(":refresh-indicator-classic")
-//include(":refresh-indicator-progress")
-//include(":refresh-indicator-lottie")
+include(":app")
+include(":refresh")
+include(":refresh-indicator-classic")
+include(":refresh-indicator-progress")
+include(":refresh-indicator-lottie")

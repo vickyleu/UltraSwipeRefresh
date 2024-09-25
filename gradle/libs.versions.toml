@@ -1,16 +1,38 @@
 [versions]
-agp = "8.6.0"
-androidx-lifecycle = "2.8.0"
-compose-plugin = "1.7.0-dev1783"
-kotlin = "2.0.20"
+accompanistSwiperefresh = "0.36.0"
+agp = "8.6.1"
+androidx-lifecycle = "2.8.2"
+compose-plugin = "1.7.0-beta02"
+kotlin = "2.1.0-Beta1"
 ksoup = "0.1.2"
+jvmTarget = "17"
+dokka = "1.9.20"
+androidx-annotation = "1.8.2"
+jetpack-compose-bom = "2024.09.02"
+kotlinxDatetime = "0.6.0"
+lottie = "2.0.0-rc01"
+android-compileSdk = "34"
+android-minSdk = "28"
+android-targetSdk = "33"
+navigationCompose = "2.7.0-alpha07"
+
 [libraries]
+accompanist-swiperefresh = { module = "com.google.accompanist:accompanist-swiperefresh", version.ref = "accompanistSwiperefresh" }
 ksoup = { module = "com.fleeksoft.ksoup:ksoup", version.ref = "ksoup" }
 androidx-lifecycle-viewmodel = { group = "org.jetbrains.androidx.lifecycle", name = "lifecycle-viewmodel", version.ref = "androidx-lifecycle" }
 androidx-lifecycle-runtime-compose = { group = "org.jetbrains.androidx.lifecycle", name = "lifecycle-runtime-compose", version.ref = "androidx-lifecycle" }
+androidx-annotations = { module = "androidx.annotation:annotation", version.ref = "androidx-annotation" }
+kotlinx-datetime = { module = "org.jetbrains.kotlinx:kotlinx-datetime", version.ref = "kotlinxDatetime" }
+compose-bom = { group = "androidx.compose", name = "compose-bom", version.ref = "jetpack-compose-bom" }
+lottie = { group = "io.github.alexzhirkevich", name = "compottie", version.ref = "lottie" }
+navigation-compose = { module = "org.jetbrains.androidx.navigation:navigation-compose", version.ref = "navigationCompose" }
+
 
 [plugins]
+android-library = { id = "com.android.library", version.ref = "agp" }
+android-application = { id = "com.android.application", version.ref = "agp" }
 kotlin-cocoapods = { id = "org.jetbrains.kotlin.native.cocoapods", version.ref = "kotlin" }
 jetbrainsCompose = { id = "org.jetbrains.compose", version.ref = "compose-plugin" }
 compose-compiler = { id = "org.jetbrains.kotlin.plugin.compose", version.ref = "kotlin" }
 kotlinMultiplatform = { id = "org.jetbrains.kotlin.multiplatform", version.ref = "kotlin" }
+dokka = { id = "org.jetbrains.dokka", version.ref = "dokka" }
