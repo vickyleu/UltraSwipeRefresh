@@ -43,4 +43,10 @@ android{
     lint{
         targetSdk=libs.versions.android.targetSdk.get().toInt()
     }
+    publishing {
+        singleVariant("release"){
+            withJavadocJar()
+            withSourcesJar()
+        }
+    }
 }
