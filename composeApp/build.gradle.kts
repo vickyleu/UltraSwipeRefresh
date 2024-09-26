@@ -40,10 +40,16 @@ kotlin{
             implementation(libs.navigation.compose)
 
             implementation(libs.lottie)
-            implementation(projects.refresh)
-            implementation(projects.refreshIndicatorClassic)
-            implementation(projects.refreshIndicatorProgress)
-            implementation(projects.refreshIndicatorLottie)
+
+            implementation(libs.compose.swiperefresh)
+            implementation(libs.compose.swiperefresh.classic)
+            implementation(libs.compose.swiperefresh.progress)
+            implementation(libs.compose.swiperefresh.lottie)
+
+//            implementation(projects.refresh)
+//            implementation(projects.refreshIndicatorClassic)
+//            implementation(projects.refreshIndicatorProgress)
+//            implementation(projects.refreshIndicatorLottie)
 
         }
     }
@@ -82,7 +88,10 @@ android{
     lint{
         targetSdk=libs.versions.android.targetSdk.get().toInt()
     }
-
+    compileOptions {
+        sourceCompatibility = JavaVersion.toVersion(libs.versions.jvmTarget.get())
+        targetCompatibility = JavaVersion.toVersion(libs.versions.jvmTarget.get())
+    }
     dependencies{
         implementation(libs.accompanist.swiperefresh)
         debugImplementation(compose.preview)

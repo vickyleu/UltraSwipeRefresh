@@ -1,5 +1,6 @@
 package com.king.ultraswiperefresh
 
+import android.annotation.SuppressLint
 import android.content.Context
 import android.os.Build
 import android.os.VibrationEffect
@@ -30,6 +31,7 @@ internal actual  fun rememberVibrator(): VibratorImpl {
  * 振动
  */
 
+@SuppressLint("ObsoleteSdkInt")
 internal actual fun VibratorImpl.vibrate(){
     if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
         vibrate(
@@ -39,6 +41,7 @@ internal actual fun VibratorImpl.vibrate(){
             )
         )
     } else {
+        @Suppress("DEPRECATION")
         vibrate(VibrationDurationMs)
     }
 }

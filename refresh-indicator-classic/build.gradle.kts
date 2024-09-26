@@ -29,7 +29,9 @@ kotlin{
     sourceSets{
         commonMain.dependencies {
             implementation(project.dependencies.platform(libs.compose.bom))
+
             compileOnly(projects.refresh)
+
             implementation(compose.runtime)
             implementation(compose.foundation)
             implementation(compose.animation)
@@ -48,6 +50,10 @@ android{
     }
     lint{
         targetSdk=libs.versions.android.targetSdk.get().toInt()
+    }
+    compileOptions {
+        sourceCompatibility = JavaVersion.toVersion(libs.versions.jvmTarget.get())
+        targetCompatibility = JavaVersion.toVersion(libs.versions.jvmTarget.get())
     }
     publishing {
         singleVariant("release"){

@@ -30,7 +30,7 @@ import com.king.ultraswiperefresh.rememberUltraSwipeRefreshState
 import io.github.alexzhirkevich.compottie.LottieCompositionSpec
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
-import ultraswiperefresh.app.generated.resources.Res
+import ultraswiperefresh.composeapp.generated.resources.Res
 
 /**
  * 自定义Lottie动画刷新样式示例

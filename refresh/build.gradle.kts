@@ -43,6 +43,10 @@ android{
     lint{
         targetSdk=libs.versions.android.targetSdk.get().toInt()
     }
+    compileOptions {
+        sourceCompatibility = JavaVersion.toVersion(libs.versions.jvmTarget.get())
+        targetCompatibility = JavaVersion.toVersion(libs.versions.jvmTarget.get())
+    }
     publishing {
         singleVariant("release"){
             withJavadocJar()

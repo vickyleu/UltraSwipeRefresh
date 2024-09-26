@@ -28,27 +28,6 @@ plugins {
 }
 
 allprojects {
-    configurations.all {
-        resolutionStrategy {
-            /*eachDependency {
-                if (requested.group == "org.jetbrains.kotlin") {
-                    useVersion(libs.versions.kotlin.get())
-                }else if (requested.group.startsWith("org.jetbrains.compose")||requested.group.startsWith("androidx.compose")) {
-                    useVersion(libs.versions.compose.plugin.get())
-                }  else if (requested.group.startsWith("org.jetbrains.kotlinx") && requested.name.startsWith("kotlinx-coroutines")) {
-                    useVersion(libs.versions.coroutines.bom.get())
-                }
-            }*/
-            // preferProjectModules的作用是优先使用项目中的模块，而不是从远程仓库中下载
-//            preferProjectModules()
-            /*  // cacheDynamicVersionsFor的作用是缓存动态版本，避免每次构建都去下载
-              cacheDynamicVersionsFor(0, TimeUnit.SECONDS)
-              // cacheChangingModulesFor的作用是缓存变化的模块，避免每次构建都去下载
-              cacheChangingModulesFor(0, TimeUnit.SECONDS)
-              // failOnVersionConflict的作用是当版本冲突时，抛出异常
-  //            failOnVersionConflict()*/
-        }
-    }
     tasks.withType<KotlinCompile>().all {
         compilerOptions {
             freeCompilerArgs.add("-Xopt-in=kotlin.RequiresOptIn")
@@ -71,6 +50,8 @@ buildscript {
         classpath("org.jetbrains.compose:compose-gradle-plugin:${libs.versions.compose.plugin.get()}")
     }
 }
+
+
 
 allprojects {
     val properties = Properties().apply {
@@ -171,7 +152,7 @@ allprojects {
                 else->false
             }
             afterEvaluate {
-                if(shouldRegistering){
+                /*if(shouldRegistering){
                     publications.register<MavenPublication>(
                         if(project.extensions.findByName("android")!=null) "release" else "java")
                     {
@@ -235,7 +216,7 @@ allprojects {
                             }
                         }
                     }
-                }else{
+                }else{*/
                     publications.withType<MavenPublication> {
                         artifact(javadocJar)
                         version = mVersion
@@ -288,7 +269,7 @@ allprojects {
                             }
                         }
                     }
-                }
+                /*}*/
             }
         }
         tasks.dokkaHtml {

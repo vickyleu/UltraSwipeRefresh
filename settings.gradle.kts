@@ -31,6 +31,29 @@ dependencyResolutionManagement {
     repositoriesMode.set(RepositoriesMode.PREFER_SETTINGS)
 
     repositories {
+        val properties = java.util.Properties().apply {
+            runCatching { rootProject.projectDir.resolve("local.properties") }
+                .getOrNull()
+                .takeIf { it?.exists() ?: false }
+                ?.reader()
+                ?.use(::load)
+        }
+        val environment: Map<String, String?> = System.getenv()
+        extra["githubToken"] = properties["github.token"] as? String
+            ?: environment["GITHUB_TOKEN"] ?: ""
+        maven {
+            url = uri("https://maven.pkg.github.com/vickyleu/${rootDir.name}")
+            credentials {
+                username = "vickyleu"
+                password = extra["githubToken"]?.toString()
+            }
+            content {
+                excludeGroupByRegex("com.finogeeks.*")
+                excludeGroupByRegex("org.jogamp.*")
+                excludeGroupByRegex("org.jetbrains.compose.*")
+                excludeGroupByRegex("(?!com|cn).github.(?!vickyleu).*")
+            }
+        }
         mavenCentral()
         google()
         // workaround for https://youtrack.jetbrains.com/issue/KT-51379
@@ -43,11 +66,14 @@ dependencyResolutionManagement {
                 excludeGroupByRegex("com.github.(?!johnrengelman|oshi|bumptech|mzule|pwittchen|filippudak|asyl|florent37).*")
             }
         }
+
+
+
     }
 }
 
 
-include(":app")
+include(":composeApp")
 include(":refresh")
 include(":refresh-indicator-classic")
 include(":refresh-indicator-progress")

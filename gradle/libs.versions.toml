@@ -1,9 +1,9 @@
 [versions]
 accompanistSwiperefresh = "0.36.0"
-agp = "8.6.1"
+agp = "8.5.2"
 androidx-lifecycle = "2.8.2"
 compose-plugin = "1.7.0-beta02"
-kotlin = "2.1.0-Beta1"
+kotlin = "2.0.20"
 ksoup = "0.1.2"
 jvmTarget = "17"
 dokka = "1.9.20"
@@ -15,7 +15,7 @@ android-compileSdk = "34"
 android-minSdk = "28"
 android-targetSdk = "33"
 navigationCompose = "2.7.0-alpha07"
-
+compose-swiperefresh = "1.0.2"
 [libraries]
 accompanist-swiperefresh = { module = "com.google.accompanist:accompanist-swiperefresh", version.ref = "accompanistSwiperefresh" }
 ksoup = { module = "com.fleeksoft.ksoup:ksoup", version.ref = "ksoup" }
@@ -27,6 +27,10 @@ compose-bom = { group = "androidx.compose", name = "compose-bom", version.ref = 
 lottie = { group = "io.github.alexzhirkevich", name = "compottie", version.ref = "lottie" }
 navigation-compose = { module = "org.jetbrains.androidx.navigation:navigation-compose", version.ref = "navigationCompose" }
 
+compose-swiperefresh = { module = "com.vickyleu.swiperefresh:refresh", version.ref = "compose-swiperefresh" }
+compose-swiperefresh-classic = { module = "com.vickyleu.swiperefresh:refresh-indicator-classic", version.ref = "compose-swiperefresh" }
+compose-swiperefresh-lottie = { module = "com.vickyleu.swiperefresh:refresh-indicator-lottie", version.ref = "compose-swiperefresh" }
+compose-swiperefresh-progress = { module = "com.vickyleu.swiperefresh:refresh-indicator-progress", version.ref = "compose-swiperefresh" }
 
 [plugins]
 android-library = { id = "com.android.library", version.ref = "agp" }

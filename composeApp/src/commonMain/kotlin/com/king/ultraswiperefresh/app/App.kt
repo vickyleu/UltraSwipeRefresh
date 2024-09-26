@@ -15,8 +15,8 @@ import com.king.ultraswiperefresh.app.navigation.NavRoute
 import com.king.ultraswiperefresh.app.navigation.noteNavGraph
 import com.king.ultraswiperefresh.app.ui.theme.RefreshLayoutTheme
 import org.jetbrains.compose.resources.stringResource
-import ultraswiperefresh.app.generated.resources.Res
-import ultraswiperefresh.app.generated.resources.app_name
+import ultraswiperefresh.composeapp.generated.resources.Res
+import ultraswiperefresh.composeapp.generated.resources.app_name
 
 @Composable
 fun MainScreen() {

@@ -2,7 +2,7 @@ package com.king.ultraswiperefresh.app.utils
 
 import androidx.compose.runtime.Composable
 import org.jetbrains.compose.resources.ExperimentalResourceApi
-import  ultraswiperefresh. app. generated. resources.Res
+import ultraswiperefresh.composeapp.generated.resources.Res
 
 @Composable
 expect fun showToast(msg: String)
