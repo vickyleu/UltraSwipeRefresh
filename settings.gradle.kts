@@ -73,7 +73,7 @@ dependencyResolutionManagement {
 }
 
 
-include(":composeApp")
+//include(":composeApp")
 include(":refresh")
 include(":refresh-indicator-classic")
 include(":refresh-indicator-progress")

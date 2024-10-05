@@ -336,6 +336,7 @@ tasks.register("deletePackages") {
 
     val mavenAuthor = "vickyleu"
     val mavenGroup = "com.$mavenAuthor.$rootProjectName"
+//    val mavenGroup = "com.$mavenAuthor"
 //    val mavenGroup = "peekaboo"
 
     group = "publishing"
